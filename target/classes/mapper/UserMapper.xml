@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scut.blockchain.repository.UserDao">
+    <resultMap id="BaseResultMap" type="com.scut.blockchain.model.User">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="points" jdbcType="INTEGER" property="points"/>
+        <result column="private_key" jdbcType="VARCHAR" property="privateKey"/>
+
+    </resultMap>
+
+    <sql id="BaseColumnList">
+        `id`, `account`, `name`, `points`, `private_key`
+    </sql>
+
+    <sql id="TableName">
+        `user`
+    </sql>
+
+    <select id="selectOneByAccount" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList"/>
+        from
+        <include refid="TableName"/>
+        where `account` = '${account}'
+    </select>
+
+</mapper>
