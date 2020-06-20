@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scut.blockchain.repository.CompanyDao">
+    <resultMap id="BaseResultMap" type="com.scut.blockchain.model.Company">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="holding_points" jdbcType="INTEGER" property="holdingPoints"/>
+        <result column="delivered_points" jdbcType="INTEGER" property="deliveredPoints"/>
+        <result column="private_key" jdbcType="VARCHAR" property="privateKey"/>
+
+    </resultMap>
+
+    <sql id="BaseColumnList">
+        `id`, `account`, `name`, `holding_points`, `delivered_points`, `private_key`
+    </sql>
+
+    <sql id="TableName">
+        `company`
+    </sql>
+
+    <select id="selectOneByAccount" resultMap="BaseResultMap">
+        select
+        <include refid="BaseColumnList"/>
+        from
+        <include refid="TableName"/>
+        where `account` = '${account}'
+    </select>
+
+</mapper>
